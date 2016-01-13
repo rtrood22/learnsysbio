@@ -73,11 +73,14 @@
         var code = editor.getValue();
         eval(code);
         chart = document.getElementById('chart');
-        Plotly.plot( chart, [{
-            x: n,
-            y: y}], {
-            margin: { t: 0 } } );
+        Plotly.plot( chart, [{x: n, y: y}], layout );
     });
+
+    layout = {
+     title: 'Simple gene activation (gene X activates gene Y)',
+     xaxis: {title: 'time (n)'},
+     yaxis: {title: 'concentration (uM)'}
+     };
 
 
 
