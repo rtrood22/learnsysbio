@@ -19,6 +19,19 @@
             width: 700px;
             height: 500px;
         }
+
+        #chart {
+            position: absolute;
+            top: 100px;
+            left: 750px;
+            width: 500px;
+            height: 500px;
+        }
+        #run {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
     </style>
     <!--Thanks Google!-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -27,27 +40,45 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     </head>
 
 <body>
-<div id="tester" style="width:600px;height:250px;"></div>
+<button id ="run" class="w3-btn w3-ripple w3-teal" onclick="run()">Run</button>
+<div id="chart" style="width:600px;height:250px;"></div>
+
+
 
 <div id="editor">
-    var x = "All this is syntax highlighted";
-    alert (x);
+    var numIteration = 100;
+    var x = new Array(numIteration);
+    var y = new Array(numIteration);
+    y[0] = 0;
+
+    for (n = 0; n < numIteration-1; n++)
+    {
+    x[n] = 10;
+    y[n+1] = 0.5*x[n] + 0.8*y[n];
+    }
+
     </div>
 <script>
+    var textarea = $('#content');
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
-    var code = editor.getValue();
-    eval(code);
+    
 
-    TESTER = document.getElementById('tester');
-    Plotly.plot( TESTER, [{
-        x: [1, 2, 3, 4, 5],
-        y: [1, 2, 4, 8, 16] }], {
-        margin: { t: 0 } } );
+    $( "#run" ).click(function() {
+        var code = editor.getValue();
+        eval(code);
+        chart = document.getElementById('chart');
+        Plotly.plot( chart, [{
+            x: n,
+            y: y}], {
+            margin: { t: 0 } } );
+    });
+
 
 
 </script>
