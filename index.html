@@ -12,29 +12,37 @@
             background-color:teal;
             color: black
         }
+
+        #header {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            opacity: 0.9;
+            touch-action: none;
+        }
         #editor {
             position: absolute;
-            top: 140px;
+            top: 200px;
             left: 20px;
             width: 750px;
             height: 500px;
         }
         #chart {
             position: absolute;
-            top: 160px;
+            top: 220px;
             left: 780px;
             width: 500px;
             height: 500px;
         }
         #run {
             position: absolute;
-            top: 54px;
+            top: 114px;
             left: 300px;
         }
 
         #checkbox {
             position: absolute;
-            top: 10px;
+            top: 70px;
             left: 100px;
         }
     </style>
@@ -49,6 +57,11 @@
     </head>
 
 <body>
+
+<!-- Header -->
+<div id = "header" class="container">
+    <h4>Simple Gene Network Simulation <font color="#a9a9a9">| UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="w3-medium glyphicon glyphicon-home"></i></a></h4>
+</div>
 <button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
 
 <div id = "checkbox">
