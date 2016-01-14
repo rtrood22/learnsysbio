@@ -87,14 +87,15 @@
 <div id="chart"></div>
 
 <div id="editor">
-    var N = 100;                      // total number of data points
-    var x = new Array(N);             // x protein concentration (uM)
-    var y = new Array(N);             // y protein concentration (uM)
-    var X = 10;                       // constant x protein concentration
-    x[0] = X;                         // initial x protein concentration
-    y[0] = 0;                         // initial y protein concentration
-    var p1 = 0.4;                     // production parameter
-    var p2 = 0.7;                     // degradation/dilution parameter
+
+    N = 100;                      // total number of data points
+    x = new Array(N);             // x protein concentration (uM)
+    y = new Array(N);             // y protein concentration (uM)
+    X = 10;                       // constant x protein concentration
+    x[0] = X;                     // initial x protein concentration
+    y[0] = 0;                     // initial y protein concentration
+    p1 = 0.4;                     // production parameter
+    p2 = 0.7;                     // degradation/dilution parameter
 
     for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
     {
@@ -102,7 +103,7 @@
         y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
     }                                 // end of for loop
 
-    </div>
+</div>
 <script>
     var textarea = $('#content');
     var editor = ace.edit("editor");
