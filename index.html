@@ -87,19 +87,20 @@
 <div id="chart"></div>
 
 <div id="editor">
-    var numIteration = 100;           // total number of iteration
+    var N = 100;                      // total number of data points
     var x = new Array(numIteration);  // x protein concentration (uM)
     var y = new Array(numIteration);  // y protein concentration (uM)
-    var constX = 10;                  // constant x protein concentration
+    var X = 10;                       // constant x protein concentration
+    x[0] = X;                         // initial x protein concentration
     y[0] = 0;                         // initial y protein concentration
     var p1 = 0.4;                     // production parameter
     var p2 = 0.7;                     // degradation/dilution parameter
 
-    for (n = 0; n < numIteration-1; n++) // for loop (1 iteration = 1 min)
+    for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
     {
-        x[n] = constX;                 // constant x protein concentration
-        y[n+1] = p1*x[n] + p2*y[n];    // updating y protein concentration
-    }                                  // end of for loop
+        x[n] = X;                     // constant x protein concentration
+        y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
+    }                                 // end of for loop
 
     </div>
 <script>
