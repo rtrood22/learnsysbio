@@ -3,6 +3,7 @@
      Module 1: Protein Degradation -->
 
     <head>
+
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
@@ -19,9 +20,19 @@
         <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
         <!-- pltly.js: the open source JavaScript graphing library https://plot.ly/javascript -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+        <style>
+            #checkbox {
+                position: absolute;
+                top: 150px;
+                left: 750px;
+            }
+        </style>
+
     </head>
 
     <body>
+
         <!-- Sidebar Menu -->
         <div id="wrapper">
             <div id="sidebar-wrapper">
@@ -56,18 +67,14 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 1: Simple Gene Network (Gene X Activates Gene Y)</b></h3>
+            <h3><b>Module 1: Protein Degradation/Dilution</b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
         <!-- User interface -->
         <button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
         <div id = "checkbox">
-            <input id = "xProtein" class="w3-check" type="checkbox" checked="checked" >
-            <label class="w3-medium ">Show x protein</label> <br>
-            <input id = "yProtein" class="w3-check" type="checkbox" checked="checked">
-            <label class="w3-medium">Show y protein</label><br>
-            <input id = "hold" class="w3-check" type="checkbox">
+            <input id = "hold" class="w3-check" type="checkbox" checked="checked">
             <label class="w3-medium">Hold</label>
         </div>
         <div id = "guide">
@@ -79,20 +86,16 @@
 
         <!-- Code editor with default text -->
         <div id="editor">
-N = 100;                      // total number of data points
-x = new Array(N);             // x protein concentration (uM)
-y = new Array(N);             // y protein concentration (uM)
-X = 10;                       // constant x protein concentration
-x[0] = X;                     // initial x protein concentration
-y[0] = 0;                     // initial y protein concentration
-p1 = 0.4;                     // production parameter
-p2 = 0.7;                     // degradation/dilution parameter
+    N = 100;                      // total number of data points
+    y = new Array(N);             // y protein concentration (uM)
+    y[0] = 10;                   // initial y protein concentration
+    Py = 0.8;                     // degradation/dilution parameter
+                                  // (0 <= Py <= 1)
 
-for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
-{
-    x[n] = X;                     // constant x protein concentration
-    y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
-}                                 // end of for loop
+    for (n = 1; n < N; n++)       // N-1 loops (1 loop = 1 min)
+    {
+        y[n] =  Py*y[n-1];        // updated y protein concentration
+    }                             // end of for loop
         </div>
 
         <!-- Code editor with default text -->
@@ -108,15 +111,9 @@ for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
                 var code = editor.getValue();
                 eval(code);
 
-                xData = {name: "x protein", x: n, y: x};
                 yData = {name: "y protein", x: n, y: y};
                 data = [];
-                if (document.getElementById('xProtein').checked) {
-                    data.push (xData);
-                }
-                if (document.getElementById('yProtein').checked) {
-                    data.push (yData);
-                }
+                data.push (yData);
                 layout = {
                     xaxis: {title: 'time [min]'},
                     yaxis: {title: 'protein concentration [uM]'},
@@ -130,5 +127,6 @@ for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
                 }
             });
         </script>
+
     </body>
 </html>

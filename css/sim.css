@@ -31,7 +31,7 @@ body {
 #checkbox {
     position: absolute;
     top: 110px;
-    left: 630px;
+    left: 670px;
 }
 #guide {
     position: absolute;
@@ -44,5 +44,5 @@ body {
     top: 190px;
     left: 900px;
     width: 500px;
-    height: 500px;
+    height: 350px;
 }

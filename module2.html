@@ -3,22 +3,22 @@
      Module 2: Simple Gene Network -->
 
     <head>
-        <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
-        <link rel="stylesheet" href="css/menu.css">
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
         <link rel="stylesheet" href="css/sim.css">
-        <!-- bootstrap.css http://getbootsrap.com -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
+        <link rel="stylesheet" href="css/menu.css">
         <!-- w3.css http://www.w3schools.com/w3css/ -->
-        <link rel="stylesheet" href="css/w3.css">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <!-- bootstrap.css http://getbootsrap.com -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- jquery https://jquery.com -->
-        <script src="js/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- bootstrap.js http://getbootsrap.com -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <!-- ace.js: an embeddable code editor written in JavaScript https://ace.c9.io -->
-        <script src="js/ace.js"></script>
+        <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
         <!-- pltly.js: the open source JavaScript graphing library https://plot.ly/javascript -->
-        <script src="js/plotly.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     </head>
 
     <body>
@@ -56,8 +56,8 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 1: Simple Gene Network (Gene X Activates Gene Y)</b></h3>
-            <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="w3-medium glyphicon glyphicon-home"></i></a></h4>
+            <h3><b>Module 2: Simple Gene Network (Gene X Activates Gene Y)</b></h3>
+            <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
         <!-- User interface -->
@@ -79,20 +79,20 @@
 
         <!-- Code editor with default text -->
         <div id="editor">
-            N = 100;                      // total number of data points
-            x = new Array(N);             // x protein concentration (uM)
-            y = new Array(N);             // y protein concentration (uM)
-            X = 10;                       // constant x protein concentration
-            x[0] = X;                     // initial x protein concentration
-            y[0] = 0;                     // initial y protein concentration
-            p1 = 0.4;                     // production parameter
-            p2 = 0.7;                     // degradation/dilution parameter
+    N = 100;                      // total number of data points
+    x = new Array(N);             // x protein concentration (uM)
+    y = new Array(N);             // y protein concentration (uM)
+    X = 10;                       // constant x protein concentration
+    x[0] = X;                     // initial x protein concentration
+    y[0] = 0;                     // initial y protein concentration
+    p1 = 0.4;                     // production parameter
+    p2 = 0.7;                     // degradation/dilution parameter
 
-            for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
-            {
-            x[n] = X;                     // constant x protein concentration
-            y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
-            }                                 // end of for loop
+    for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
+    {
+        x[n] = X;                     // constant x protein concentration
+        y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
+    }                                 // end of for loop
         </div>
 
         <!-- Code editor with default text -->
