@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 3: pXY (production parameter) -->
+     Module 5: y[0] (initial y protein concentration) -->
 
     <head>
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
@@ -56,7 +56,7 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 3: pXY (production parameter) </b></h3>
+            <h3><b>Module 5: y[0] (initial y protein concentration) </b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
@@ -72,9 +72,9 @@
             <label class="w3-medium">Hold</label>
         </div>
         <ol id = "guide">
-            <li class = "w3-large" >Make pXY equal to 0.8 (line 8)</li>
+            <li class = "w3-large" >Make y[0] equal to 0 (line 9)</li>
             <li class = "w3-large" >Press [Run]</li>
-            <li class = "w3-large" >Repeat (try 0.6, 0.4, 0.2 for pXY)</li>
+            <li class = "w3-large" >Repeat (try 5, 15, 25, 30 for pY)</li>
         </ol>
 
         <!-- Chart -->
@@ -87,8 +87,8 @@
     y = new Array(N);             // y protein concentration (uM)
     X = 10;                       // constant x protein concentration
     x[0] = X;                     // initial x protein concentration
-    y[0] = 0;                     // initial y protein concentration
-    pXY = 0.4;                    // production parameter
+    y[0] = 1;                     // initial y protein concentration
+    pXY = 0.7;                    // production parameter
     pY = 0.7;                     // degradation/dilution parameter
 
     for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
@@ -111,8 +111,8 @@
                 var code = editor.getValue();
                 eval(code);
 
-                xData = {name: "x protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: x};
-                yData = {name: "y protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: y};
+                xData = {name: "x protein (y[0] = " + y[0] + ")", x: n, y: x};
+                yData = {name: "y protein (y[0] = " + y[0] + ")", x: n, y: y};
                 data = [];
                 if (document.getElementById('xProtein').checked) {
                     data.push (xData);
