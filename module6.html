@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 5: y[0] (initial y protein concentration) -->
+     Module 6: Y Protein Stability -->
 
     <head>
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
@@ -64,8 +64,8 @@
         <button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
         <button id ="reset" class="w3-btn w3-ripple w3-red w3-large" onclick="history.go(0)">Reset</button>
         <div id = "checkbox">
-            <input id = "xProtein" class="w3-check" type="checkbox" >
-            <label class="w3-medium ">Show x protein</label> <br>
+            <input id = "disturbance" class="w3-check" type="checkbox" >
+            <label class="w3-medium ">Show disturbance</label> <br>
             <input id = "yProtein" class="w3-check" type="checkbox" checked="checked">
             <label class="w3-medium">Show y protein</label><br>
             <input id = "hold" class="w3-check" type="checkbox" checked="checked">
@@ -85,6 +85,7 @@
     N = 100;                      // total number of data points
     x = new Array(N);             // x protein concentration (uM)
     y = new Array(N);             // y protein concentration (uM)
+    d = new Array(N);             // disturbance affecting y protein
     X = 10;                       // constant x protein concentration
     x[0] = X;                     // initial x protein concentration
     y[0] = 1;                     // initial y protein concentration
