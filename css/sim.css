@@ -31,11 +31,11 @@ body {
 #checkbox {
     position: absolute;
     top: 110px;
-    left: 670px;
+    left: 650px;
 }
 #guide {
     position: absolute;
-    top: 195px;
+    top: 140px;
     left: 140px;
 }
 
@@ -43,6 +43,14 @@ body {
     position: absolute;
     top: 190px;
     left: 900px;
-    width: 500px;
+    width: 600px;
     height: 350px;
+}
+
+#comment {
+    position: absolute;
+    top: 550px;
+    left: 900px;
+    width: 500px;
+    height: 150px;
 }

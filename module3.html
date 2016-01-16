@@ -7,10 +7,10 @@
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
         <link rel="stylesheet" href="css/menu.css">
-        <!-- w3.css http://www.w3schools.com/w3css/ -->
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <!-- bootstrap.css http://getbootsrap.com -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- w3.css http://www.w3schools.com/w3css/ -->
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <!-- jquery https://jquery.com -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- bootstrap.js http://getbootsrap.com -->
@@ -77,6 +77,9 @@
         <!-- Chart -->
         <div id="chart"></div>
 
+        <!-- Comment -->
+        <div id = "comment" class="w3-card-2 w3-teal"><p>w3-card-2</p></div>
+
         <!-- Code editor with default text -->
         <div id="editor">
     N = 100;                      // total number of data points
@@ -109,8 +112,8 @@
                 var code = editor.getValue();
                 eval(code);
 
-                xData = {name: "x protein", x: n, y: x};
-                yData = {name: "y protein", x: n, y: y};
+                xData = {name: "x protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: x};
+                yData = {name: "y protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: y};
                 data = [];
                 if (document.getElementById('xProtein').checked) {
                     data.push (xData);

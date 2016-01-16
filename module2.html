@@ -7,10 +7,10 @@
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
         <link rel="stylesheet" href="css/menu.css">
-        <!-- w3.css http://www.w3schools.com/w3css/ -->
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <!-- bootstrap.css http://getbootsrap.com -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- w3.css http://www.w3schools.com/w3css/ -->
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <!-- jquery https://jquery.com -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- bootstrap.js http://getbootsrap.com -->
@@ -70,9 +70,11 @@
             <input id = "hold" class="w3-check" type="checkbox">
             <label class="w3-medium">Hold</label>
         </div>
-        <div id = "guide">
-            <p  class = "w3-large" >Modify the code below and press [Run]</p>
-        </div>
+        <ol id = "guide">
+            <li class = "w3-large" >Modify the code below</li>
+            <li class = "w3-large" >Check/uncheck checkboxes</li>
+            <li class = "w3-large" >Press [Run]</li>
+        </ol>
 
         <!-- Chart -->
         <div id="chart"></div>
@@ -88,11 +90,11 @@
     pXY = 0.4;                    // production parameter
     pY = 0.7;                     // degradation/dilution parameter
 
-    for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
+    for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X;                     // constant x protein concentration
+        x[n] = X;                      // constant x protein concentration
         y[n] = pXY*x[n-1] + pY*y[n-1]; // updated y protein concentration
-    }                                 // end of for loop
+    }                                  // end of for loop
         </div>
 
         <!-- Code editor with default text -->
@@ -108,8 +110,8 @@
                 var code = editor.getValue();
                 eval(code);
 
-                xData = {name: "x protein", x: n, y: x};
-                yData = {name: "y protein", x: n, y: y};
+                xData = {name: "x protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: x};
+                yData = {name: "y protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: y};
                 data = [];
                 if (document.getElementById('xProtein').checked) {
                     data.push (xData);

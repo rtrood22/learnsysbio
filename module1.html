@@ -8,10 +8,11 @@
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
         <link rel="stylesheet" href="css/menu.css">
-        <!-- w3.css http://www.w3schools.com/w3css/ -->
-        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
         <!-- bootstrap.css http://getbootsrap.com -->
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- w3.css http://www.w3schools.com/w3css/ -->
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
         <!-- jquery https://jquery.com -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- bootstrap.js http://getbootsrap.com -->
@@ -77,9 +78,12 @@
             <input id = "hold" class="w3-check" type="checkbox" checked="checked">
             <label class="w3-medium">Hold</label>
         </div>
-        <div id = "guide">
-            <p  class = "w3-large" >Modify the code below and press [Run]</p>
-        </div>
+        <ol id = "guide">
+            <li class = "w3-large" >Modify the code below</li>
+            <li class = "w3-large" >Check/uncheck [Hold]</li>
+            <li class = "w3-large" >Press [Run]</li>
+        </ol>
+
 
         <!-- Chart -->
         <div id="chart"></div>
@@ -111,7 +115,7 @@
                 var code = editor.getValue();
                 eval(code);
 
-                yData = {name: "y protein", x: n, y: y};
+                yData = {name: "y protein (y[0] = " + y[0] + ", pY = " + pY + ")", x: n, y: y};
                 data = [];
                 data.push (yData);
                 layout = {
