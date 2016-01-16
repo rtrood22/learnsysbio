@@ -85,13 +85,13 @@
     X = 10;                       // constant x protein concentration
     x[0] = X;                     // initial x protein concentration
     y[0] = 0;                     // initial y protein concentration
-    p1 = 0.4;                     // production parameter
-    p2 = 0.7;                     // degradation/dilution parameter
+    pXY = 0.4;                    // production parameter
+    pY = 0.7;                     // degradation/dilution parameter
 
     for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
     {
         x[n] = X;                     // constant x protein concentration
-        y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
+        y[n] = pXY*x[n-1] + pY*y[n-1]; // updated y protein concentration
     }                                 // end of for loop
         </div>
 
