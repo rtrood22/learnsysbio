@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 6: Y Protein Stability -->
+     Module 6: Y Protein Stability (Simple Gene Network) -->
 
     <head>
+
+
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
@@ -19,6 +21,17 @@
         <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
         <!-- pltly.js: the open source JavaScript graphing library https://plot.ly/javascript -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        #checkbox {
+            position: absolute;
+            top: 110px;
+            left: 610px;
+        }
+    </style>
+
+
+
     </head>
 
     <body>
@@ -56,7 +69,7 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 5: y[0] (initial y protein concentration) </b></h3>
+            <h3><b>Module 6: Y Protein Stability (Simple Gene Network) </b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
@@ -64,17 +77,17 @@
         <button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
         <button id ="reset" class="w3-btn w3-ripple w3-red w3-large" onclick="history.go(0)">Reset</button>
         <div id = "checkbox">
-            <input id = "disturbance" class="w3-check" type="checkbox" >
+            <input id = "disturbance" class="w3-check" type="checkbox" checked="checked" >
             <label class="w3-medium ">Show disturbance</label> <br>
             <input id = "yProtein" class="w3-check" type="checkbox" checked="checked">
             <label class="w3-medium">Show y protein</label><br>
-            <input id = "hold" class="w3-check" type="checkbox" checked="checked">
+            <input id = "hold" class="w3-check" type="checkbox" ">
             <label class="w3-medium">Hold</label>
         </div>
         <ol id = "guide">
-            <li class = "w3-large" >Make y[0] equal to 0 (line 9)</li>
+            <li class = "w3-large" >Modify the code below</li>
+            <li class = "w3-large" >Check/uncheck checkboxes</li>
             <li class = "w3-large" >Press [Run]</li>
-            <li class = "w3-large" >Repeat (try 5, 15, 25, and 30 for pY)</li>
         </ol>
 
         <!-- Chart -->
@@ -82,21 +95,26 @@
 
         <!-- Code editor with default text -->
         <div id="editor">
-    N = 100;                      // total number of data points
+    N = 250;                      // total number of data points
     x = new Array(N);             // x protein concentration (uM)
     y = new Array(N);             // y protein concentration (uM)
     d = new Array(N);             // disturbance affecting y protein
     X = 10;                       // constant x protein concentration
     x[0] = X;                     // initial x protein concentration
-    y[0] = 1;                     // initial y protein concentration
-    pXY = 0.7;                    // production parameter
-    pY = 0.7;                     // degradation/dilution parameter
+    y[0] = 0;                     // initial y protein concentration
+    pXY = 0.5;                    // production parameter
+    pY = 0.9;                     // degradation/dilution parameter
 
-    for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
+    for (n = 1; n < N; n++)             // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X;                      // constant x protein concentration
-        y[n] = pXY*x[n-1] + pY*y[n-1]; // update y protein concentration
-    }                                  // end of for loop
+        x[n] = X;                       // constant x protein concentration
+
+        if (n == 50){d[n] = 20;}        // add disturbance 20 to y protein
+        else if (n == 150) {d[n] = -20} // at time 50 and disturbance -20 to
+        else d[n] = 0;                  // y protein at time 150
+
+        y[n] = pXY*x[n-1] + pY*y[n-1] + d[n]; // update y protein concentration
+    }                                   // end of for loop
         </div>
 
         <!-- Code editor with default text -->
@@ -112,10 +130,10 @@
                 var code = editor.getValue();
                 eval(code);
 
-                xData = {name: "x protein (y[0] = " + y[0] + ")", x: n, y: x};
-                yData = {name: "y protein (y[0] = " + y[0] + ")", x: n, y: y};
+                xData = {name: "disturbance", x: n, y: d};
+                yData = {name: "y protein", x: n, y: y};
                 data = [];
-                if (document.getElementById('xProtein').checked) {
+                if (document.getElementById('disturbance').checked) {
                     data.push (xData);
                 }
                 if (document.getElementById('yProtein').checked) {
