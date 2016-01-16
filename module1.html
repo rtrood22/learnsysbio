@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+
+    <style type = "text/css">
+
+        body {
+            overflow: scroll;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color:teal;
+            color: black
+        }
+
+        #header {
+            position: absolute;
+            left: 30px;
+            top: 10px;
+            opacity: 0.9;
+            touch-action: none;
+        }
+        #editor {
+            position: absolute;
+            top: 200px;
+            left: 40px;
+            width: 750px;
+            height: 500px;
+        }
+        #run {
+            position: absolute;
+            top: 114px;
+            left: 725px;
+        }
+
+        #checkbox {
+            position: absolute;
+            top: 70px;
+            left: 530px;
+        }
+        #guide {
+            position: absolute;
+            top: 165px;
+            left: 40px;
+        }
+        #chart {
+            position: absolute;
+            top: 220px;
+            left: 800px;
+            width: 500px;
+            height: 500px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+
+<body>
+<div id = "header" class="container">
+    <h3><b>Simple Gene Network (Gene X Activates Gene Y) Simulation </b><font color="#a9a9a9"><br>
+        UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="w3-large glyphicon glyphicon-home"></i></a></h3>
+</div>
+<button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
+
+<div id = "checkbox">
+    <input id = "xProtein" class="w3-check" type="checkbox" checked="checked" >
+    <label class="w3-validate ">Show x protein</label> <br>
+    <input id = "yProtein" class="w3-check" type="checkbox" checked="checked">
+    <label class="w3-validate">Show y protein</label><br>
+    <input id = "hold" class="w3-check" type="checkbox">
+    <label class="w3-validate">Hold</label>
+</div>
+
+<div id = "guide">
+    <p  class = "w3-large" >Modify the code below and press [Run]</p>
+</div>
+
+<div id="chart"></div>
+
+<div id="editor">
+
+    N = 100;                      // total number of data points
+    x = new Array(N);             // x protein concentration (uM)
+    y = new Array(N);             // y protein concentration (uM)
+    X = 10;                       // constant x protein concentration
+    x[0] = X;                     // initial x protein concentration
+    y[0] = 0;                     // initial y protein concentration
+    p1 = 0.4;                     // production parameter
+    p2 = 0.7;                     // degradation/dilution parameter
+
+    for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
+    {
+        x[n] = X;                     // constant x protein concentration
+        y[n] = p1*x[n-1] + p2*y[n-1]; // updated y protein concentration
+    }                                 // end of for loop
+
+</div>
+<script>
+    var textarea = $('#content');
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setFontSize(16);
+
+    $( "#run" ).click(function() {
+
+        var chart = document.getElementById('chart');
+        var code = editor.getValue();
+        eval(code);
+        xData = {name: "x protein", x: n, y: x};
+        yData = {name: "y protein", x: n, y: y};
+
+        data = [];
+        if (document.getElementById('xProtein').checked) {
+            data.push (xData);
+        }
+        if (document.getElementById('yProtein').checked) {
+            data.push (yData);
+        }
+        layout = {
+            title: 'Simple gene network (gene X activates gene Y)',
+            xaxis: {title: 'time [min]'},
+            yaxis: {title: 'protein concentration [uM]'},
+            margin: {t: 40},
+        };
+
+        if (document.getElementById('hold').checked) {
+            Plotly.plot(chart, data, layout);
+        } else {
+            Plotly.newPlot(chart, data, layout);
+        }
+    });
+
+
+</script>
+
+
+
+</body>
+</html>
