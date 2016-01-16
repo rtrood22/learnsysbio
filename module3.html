@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 2: Simple Gene Network (Gene X Activates Gene Y) -->
+     Module 3: Simple Gene Network (without Y Protein Degradation/Dilution (pY = 1)) -->
 
     <head>
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
@@ -56,7 +56,7 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 2: Simple Gene Network (Gene X Activates Gene Y)</b></h3>
+            <h3><b>Module 3: Simple Gene Network (without Y Protein Degradation/Dilution (pY = 1))</b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
@@ -86,13 +86,14 @@
     x[0] = X;                     // initial x protein concentration
     y[0] = 0;                     // initial y protein concentration
     pXY = 0.4;                    // production parameter
-    pY = 0.7;                     // degradation/dilution parameter
+    pY = 1;                       // degradation/dilution parameter (fixed)
+                                  // do not change pY
 
-    for (n = 1; n < N; n++)           // N-1 loops (1 loop = 1 min)
+    for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X;                     // constant x protein concentration
+        x[n] = X;                      // constant x protein concentration
         y[n] = pXY*x[n-1] + pY*y[n-1]; // updated y protein concentration
-    }                                 // end of for loop
+    }                                  // end of for loop
         </div>
 
         <!-- Code editor with default text -->
