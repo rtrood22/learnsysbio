@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 8: Extrinsic Noise Added to both X and Y -->
+     Module 8: Extrinsic Noise Added to Both X and Y Protein -->
 
     <head>
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
@@ -79,7 +79,7 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 8: Extrinsic Noise Added to both X and Y</b></h3>
+            <h3><b>Module 8: Extrinsic Noise Added to Both X and Y Protein</b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
@@ -122,13 +122,13 @@
 
     for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X + 1*random.nextGaussian(); // random.nextGaussian() generates
+        x[n] = X + 1*random.Gaussian(); // random.Gaussian() generates
                                             // a normally distributed random
                                             // number with mean 0 and standard
                                             // deviation 1 (extrinsic noise)
 
-        // Add random.nextGaussian() to y protein
-        y[n] = pXY*x[n-1] + pY*y[n-1] + 1*random.nextGaussian();;
+        // Add random.Gaussian() to y protein
+        y[n] = pXY*x[n-1] + pY*y[n-1] + 1*random.Gaussian();
 
     }                                       // end of for loop
         </div>

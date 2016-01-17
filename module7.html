@@ -120,12 +120,12 @@
     pXY = 0.2;                    // production parameter
     pY = 0.9;                     // degradation/dilution parameter
 
-    for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
+    for (n = 1; n < N; n++)             // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X + 1*random.nextGaussian(); // random.nextGaussian() generates
-                                            // a normally distributed random
-                                            // number with mean 0 and standard
-                                            // deviation 1 (extrinsic noise)
+        x[n] = X + 1*random.Gaussian(); // random.Gaussian() generates
+                                        // a normally distributed random
+                                        // number with mean 0 and standard
+                                        // deviation 1 (extrinsic noise)
 
         y[n] = pXY*x[n-1] + pY*y[n-1]; // update y protein concentration
     }                                  // end of for loop

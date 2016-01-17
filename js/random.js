@@ -12,7 +12,7 @@ function randomGaussain(){
         return (Math.abs(hz) < kn[iz]) ? hz * wn[iz] : nfix(hz, iz);
     }
 
-    this.nextGaussian = function(){
+    this.Gaussian = function(){
         return RNOR();
     }
 
@@ -89,5 +89,3 @@ function randomGaussain(){
     zigset();
 }
 
-var z = new randomGaussain();
-z.nextGaussian();
