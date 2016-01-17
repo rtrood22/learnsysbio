@@ -64,8 +64,8 @@
 
         <!-- Navigation -->
         <div id = "navigation" class="container">
-            <a href="module1.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
-            <a href="module3.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
+            <a href="module6.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
+            <a href="module8.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
         </div>
 
         <!-- User interface -->
@@ -101,7 +101,7 @@
 
     for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X + 2*random.nextGaussian(); // random.nextGaussian() generates
+        x[n] = X + 1*random.nextGaussian(); // random.nextGaussian() generates
                                             // a normally distributed random
                                             // number with mean 0 and standard
                                             // deviation 1 (extrinsic noise)
@@ -126,8 +126,8 @@
 
                 eval(code);
 
-                xData = {name: "x protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: x};
-                yData = {name: "y protein (pXY = " + pXY + ", pY = " + pY + ")", x: n, y: y};
+                xData = {name: "x protein", x: n, y: x};
+                yData = {name: "y protein", x: n, y: y};
                 data = [];
                 if (document.getElementById('xProtein').checked) {
                     data.push (xData);

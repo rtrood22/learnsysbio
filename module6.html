@@ -116,7 +116,7 @@
         x[n] = X;                       // constant x protein concentration
 
         if (n == 50){d[n] = 20;}        // add disturbance 20 to y protein
-        else if (n == 150) {d[n] = -20} // at time 50 and disturbance -20 to
+        else if (n == 150) {d[n] = -20;} // at time 50 and disturbance -20 to
         else d[n] = 0;                  // y protein at time 150
 
         y[n] = pXY*x[n-1] + pY*y[n-1] + d[n]; // update y protein concentration
