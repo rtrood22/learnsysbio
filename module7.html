@@ -111,10 +111,10 @@
 
         <!-- Code editor with default text -->
         <div id="editor">
-    N = 100;                      // total number of data points
+    N = 200;                      // total number of data points
     x = new Array(N);             // x protein concentration (uM)
     y = new Array(N);             // y protein concentration (uM)
-    X = 10;                       // constant x protein concentration
+    X = 30;                       // constant x protein concentration
     x[0] = X;                     // initial x protein concentration
     y[0] = 0;                     // initial y protein concentration
     pXY = 0.2;                    // production parameter
@@ -122,7 +122,7 @@
 
     for (n = 1; n < N; n++)             // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X + 1*random.Gaussian(); // random.Gaussian() generates
+        x[n] = X + 2*random.Gaussian(); // random.Gaussian() generates
                                         // a normally distributed random
                                         // number with mean 0 and standard
                                         // deviation 1 (extrinsic noise)
