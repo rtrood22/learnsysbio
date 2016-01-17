@@ -93,7 +93,7 @@
     background: none;
 }
 
-@media(min-width:120px) {
+@media(min-width:130px) {
     #wrapper {
         padding-left: 100px;
     }
@@ -103,7 +103,7 @@
     }
 
     #sidebar-wrapper {
-        width: 120px;
+        width: 130px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
