@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f104e28-5297-456c-b339-02ca55175321" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/sim.css" afterPath="$PROJECT_DIR$/css/sim.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module1.html" afterPath="$PROJECT_DIR$/module1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module2.html" afterPath="$PROJECT_DIR$/module2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module3.html" afterPath="$PROJECT_DIR$/module3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module4.html" afterPath="$PROJECT_DIR$/module4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module5.html" afterPath="$PROJECT_DIR$/module5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module6.html" afterPath="$PROJECT_DIR$/module6.html" />
     </list>
     <ignored path="learnsysbio.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sim.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sim.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/sim.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.045883942">
-              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+            <state vertical-scroll-proportion="-13.076923">
+              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -62,8 +57,8 @@
       <file leaf-file-name="module1.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.769231">
-              <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+            <state vertical-scroll-proportion="-7.076923">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="module2.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="module2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.961538">
-              <caret line="62" column="3" selection-start-line="62" selection-start-column="3" selection-end-line="66" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.1605938">
+              <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -121,13 +116,13 @@
         <option value="$PROJECT_DIR$/css/menu.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/bootstrap.min.css" />
-        <option value="$PROJECT_DIR$/module2.html" />
         <option value="$PROJECT_DIR$/module3.html" />
         <option value="$PROJECT_DIR$/module5.html" />
         <option value="$PROJECT_DIR$/module6.html" />
         <option value="$PROJECT_DIR$/module1.html" />
         <option value="$PROJECT_DIR$/module4.html" />
         <option value="$PROJECT_DIR$/css/sim.css" />
+        <option value="$PROJECT_DIR$/module2.html" />
       </list>
     </option>
   </component>
@@ -398,14 +393,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.961538">
-          <caret line="62" column="3" selection-start-line="62" selection-start-column="3" selection-end-line="66" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.961538">
@@ -440,16 +427,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.769231">
-          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+        <state vertical-scroll-proportion="-7.076923">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/sim.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.045883942">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        <state vertical-scroll-proportion="-13.076923">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1605938">
+          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
           <folding />
         </state>
       </provider>
