@@ -14,6 +14,14 @@ body {
     top: 0px;
     touch-action: none;
 }
+
+#navigation {
+    position: absolute;
+    left: 790px;
+    top: 20px;
+    touch-action: none;
+}
+
 #editor {
     position: absolute;
     top: 230px;
