@@ -127,9 +127,9 @@
                                         // number with mean 0 and standard
                                         // deviation 1 (extrinsic noise)
 
-        // Add random.Gaussian() to y protein
+        // add extrinsic noise (random.Gaussian()) to y protein
         y[n] = pXY*x[n-1] + pY*y[n-1] + 2*random.Gaussian();
-    }                                   // end of for loop
+    }   // end of for loop
         </div>
 
         <!-- Code editor with default text -->
