@@ -122,12 +122,13 @@
 
     for (n = 1; n < N; n++)             // N-1 loops (1 loop = 1 min)
     {
+        //add extrinsic noise to x protein
         x[n] = X + 2*random.Gaussian(); // random.Gaussian() generates
                                         // a normally distributed random
                                         // number with mean 0 and standard
                                         // deviation 1 (extrinsic noise)
 
-        // add extrinsic noise (random.Gaussian()) to y protein
+        // add extrinsic noise to y protein
         y[n] = pXY*x[n-1] + pY*y[n-1] + 2*random.Gaussian();
     }   // end of for loop
         </div>
