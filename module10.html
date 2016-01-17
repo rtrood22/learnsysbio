@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 9: Parameter Estimation using an Adaptive Filter -->
+     Module 10: Positive and Negative Autoregulation -->
 
     <head>
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
@@ -19,8 +19,6 @@
         <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
         <!-- pltly.js: the open source JavaScript graphing library https://plot.ly/javascript -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <!-- http://www.filosophy.org/post/35/normaldistributed_random_values_in_javascript_using_the_ziggurat_algorithm/ -->
-        <script src="js/random.js"></script>
     </head>
 
     <body>
@@ -79,14 +77,14 @@
 
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b> Module 9: Parameter Estimation using an Adaptive Filter</b></h3>
+            <h3><b>Module 10: Positive and Negative Autoregulation</b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
         <!-- Navigation -->
         <div id = "navigation" class="container">
-            <a href="module8.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
-            <a href="module10.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
+            <a href="module1.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
+            <a href="module3.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
         </div>
 
         <!-- User interface -->
@@ -111,38 +109,32 @@
 
         <!-- Code editor with default text -->
         <div id="editor">
-    N = 200;                  // total number of data points
-    x = new Array(N);         // x protein concentration (uM)
-    y = new Array(N);         // y protein concentration (uM)
-    X = 30;                   // constant x protein concentration
-    x[0] = X;                 // initial x protein concentration
-    y[0] = 0;                 // initial y protein concentration
-    pXY = 0.4;                // production parameter
-    pY = 0.8;                 // degradation/dilution parameter
+    N = 100;                      // total number of data points
+    x = new Array(N);             // x protein concentration (uM)
+    y = new Array(N);             // y protein concentration (uM)
+    pos_y = new Array(N);         // positively autoregulated
+                                  // y protein concentration (uM)
+    neg_y = new Array(N);         // neagtively autoregulated
+                                  // y protein concentration (uM)
+    X = 10;                       // constant x protein concentration
+    x[0] = X;                     // initial x protein concentration
+    y[0] = 0;                     // initial y protein concentration
+    pXY = 0.2;                    // production parameter
+    pY = 0.9;                     // degradation/dilution parameter
+    par = 0.5;                    // positive autoregulation factor
+    nar = 0.5;                    // negative autoregulation facotr
 
-    // fake data generation
-    for (n = 1; n < N; n++)   // N-1 loops (1 loop = 1 min)
+    for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X + 2*random.Gaussian();
-        y[n] = pXY*x[n-1] + pY*y[n-1] + 2*random.Gaussian();
-    }
+        x[n] = X;                      // constant x protein concentration
+        y[n] = pXY*x[n-1] + pY*y[n-1]; // update y protein concentration
 
-    // adaptive parameter estimation (Least Mean Squares (LMS) method)
-    est_pXY = new Array(N);   // estimated production parameter set
-    est_pY = new Array(N);    // estimated degradation/dilution parameter set
-    est_y = new Array(N);     // y protein concentration (uM)
-    error = new Array(N);     // estimation error (y - est_y)
-    est_pXY[1] = 0;           // initial guess for pXY
-    est_pY[1] = 0;            // initial guess for pY
-    u = 0.0001;               // step size
+        // update positvely autoregulated y protein concentration
+        pos_y[n]= pXY*x[n-1] + (pY + par)*y[n-1];
 
-    for (n = 1; n < N-1; n++) // N-2 loops (1 loop = 1 min)
-    {
-        est_pXY[n+1] = est_pXY[n] + u*x[n-1]*(y[n]-(x[n-1]*est_pXY[n] + y[n-1]*est_pY[n]));
-        est_pY[n+1] = est_pY[n] + u*y[n-1]*(y[n]-(x[n-1]*est_pXY[n] + y[n-1]*est_pY[n]));
-        est_y[n+1] = x[n]*est_pXY[n+1] + y[n]*est_pY[n+1];
-        error[n+1] = y[n+1] - est_y[n+1];
-    }
+        // update positvely autoregulated protein concentration
+        neg_y[n]= pXY*x[n-1] + (pY - nar)*y[n-1];
+    }   // end of for loop
         </div>
 
         <!-- Code editor with default text -->
@@ -151,8 +143,6 @@
             editor.setTheme("ace/theme/eclipse");
             editor.getSession().setMode("ace/mode/javascript");
             editor.setFontSize(16);
-            var random = new randomGaussain();
-
 
             // Execute when [Run] is clicked
             $( "#run" ).click(function() {
@@ -160,18 +150,18 @@
                 var code = editor.getValue();
                 eval(code);
                 xData = {name: "x protein", x: n, y: x};
-                yData = {name: "y protein", x: n, y: y};
-                estY = {name: "estimated y protein", x: n, y: est_y};
-                estError = {name: "estimation error", x: n, y: error};
+                yData = {name: "y protein (no autoregulation)", x: n, y: y};
+                pos_yData = {name: "y protein (par = " + par + ")", x: n, y: pos_y};
+                neg_yData = {name: "y protein (nar = " + nar + ")", x: n, y: neg_y};
                 data = [];
                 if (document.getElementById('xProtein').checked) {
                     data.push (xData);
                 }
                 if (document.getElementById('yProtein').checked) {
                     data.push (yData);
+                    data.push (pos_yData);
+                    data.push (neg_yData);
                 }
-                data.push (estY);
-                data.push (estError);
                 layout = {
                     xaxis: {title: 'time [min]'},
                     yaxis: {title: 'protein concentration [uM]'},
