@@ -126,8 +126,10 @@
 
     for (n = 1; n < N; n++)            // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X;                      // constant x protein concentration
-        y[n] = pXY*x[n-1] + pY*y[n-1]; // update y protein concentration
+        x[n] = X                       // x protein concentration
+
+        // update y protein concentration
+        y[n] = pXY*x[n-1] + pY*y[n-1];
 
         // update positvely autoregulated y protein concentration
         pos_y[n]= pXY*x[n-1] + (pY + par)*y[n-1];
