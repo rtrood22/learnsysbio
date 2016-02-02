@@ -144,7 +144,7 @@
 
     for (n = 1; n < N; n++)       // N-1 loops (1 loop = 1 min)
     {
-        x1[n] = X1                // x protein concentration
+        x1[n] = X1;               // x protein concentration
 
         // update y1 protein concentration
         y1[n] = pX1Y1*x1[n-1] + pY1*y1[n-1];

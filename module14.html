@@ -120,14 +120,14 @@
     c[0] = 0;                     // initial z protein concentration
     d[0] = 0;                     // initial disturbance
     pXC = 0.1;                    // production parameter pXC
-    pC = 0.9;                     // degradation/dilution parameter pY
+    pC = 0.9;                     // degradation/dilution parameter pC
     pCY = 5;                      // production parameter pCY
     pYC = 0.1;                    // negative feedback parameter pYC
     pY = 0.01;                    // degradation/dilution parameter pY
 
     for (n = 1; n < N; n++)       // N-1 loops (1 loop = 1 min)
     {
-        x[n] = X                  // x protein concentration
+        x[n] = X;                 // x protein concentration
 
        // update c protein concentration
         c[n] = pXC*x[n-1] - pYC*y[n-1] + pC*c[n-1];
