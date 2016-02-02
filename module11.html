@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <!-- Learn Systems Biology by Yong-Jun Shin (csml.uconn.edu), 2016
-     Module 1: Protein Degradation/Dilution -->
+     Module 11: Coherent Type 1 Feedforward Loop -->
 
     <head>
-
         <!-- Cascading Style Sheet (CSS) for the simulation layout-->
         <link rel="stylesheet" href="css/sim.css">
         <!-- Cascading Style Sheet (CSS) for the sidebar menu-->
@@ -12,7 +11,6 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <!-- w3.css http://www.w3schools.com/w3css/ -->
         <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-
         <!-- jquery https://jquery.com -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <!-- bootstrap.js http://getbootsrap.com -->
@@ -21,28 +19,16 @@
         <script src="http://rawgithub.com/ajaxorg/ace-builds/master/src-noconflict/ace.js"></script>
         <!-- pltly.js: the open source JavaScript graphing library https://plot.ly/javascript -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
-        <style>
-            #checkbox {
-                position: absolute;
-                top: 150px;
-                left: 700px;
-            }
-        </style>
-
     </head>
 
     <body>
-
         <!-- Sidebar Menu -->
         <div id="wrapper">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav w3-large">
-                    <li class="sidebar-brand ">
-                        <a href="index.html">Home</a>
-                    </li>
+                    <li class="sidebar-brand "></li>
                     <li>
-                        <a href="module1.html">Module 1</a>
+                        <a href="index.html">Module 1</a>
                     </li>
                     <li>
                         <a href="module2.html">Module 2</a>
@@ -86,28 +72,35 @@
                 </ul>
             </div>
         </div>
+
         <!-- Title -->
         <div id = "header" class="container">
-            <h3><b>Module 1: Protein Degradation/Dilution</b></h3>
+            <h3><b>Module 11: Coherent Type 1 Feedforward Loop</b></h3>
             <h4>Learn Systems Biology <font color="#a9a9a9"> by UCONN CSMLab </font> <a href="http://csml.uconn.edu"><i class="glyphicon glyphicon-home w3-medium"></i></a></h4>
         </div>
 
         <!-- Navigation -->
         <div id = "navigation" class="container">
-            <a href="index.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
-            <a href="module2.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
+            <a href="module10.html"><i class="glyphicon glyphicon-chevron-left w3-xxlarge"></i></a>
+            <a href="module12.html"><i class="glyphicon glyphicon-chevron-right w3-xxlarge"></i></a>
         </div>
 
         <!-- User interface -->
         <button id ="run" class="w3-btn w3-ripple w3-teal w3-large" onclick="run()">Run</button>
         <button id ="reset" class="w3-btn w3-ripple w3-red w3-large" onclick="history.go(0)">Reset</button>
-        <div id = "checkbox">
-            <input id = "hold" class="w3-check" type="checkbox" checked="checked">
+        <div id = "checkbox" style="position: absolute; top: 80px; left: 630px;">
+            <input id = "xProtein" class="w3-check" type="checkbox" checked="checked" >
+            <label class="w3-medium ">Show x protein</label> <br>
+            <input id = "yProtein" class="w3-check" type="checkbox" checked="checked">
+            <label class="w3-medium">Show y protein</label><br>
+            <input id = "zProtein" class="w3-check" type="checkbox" checked="checked">
+            <label class="w3-medium">Show z protein</label><br>
+            <input id = "hold" class="w3-check" type="checkbox">
             <label class="w3-medium">Hold</label>
         </div>
         <ol id = "guide">
-            <li class = "w3-large" >Modify the code below</li>
-            <li class = "w3-large" >Check/uncheck [Hold]</li>
+            <li class = "w3-large" >Modify the Javascript code below</li>
+            <li class = "w3-large" >Check/uncheck checkboxes</li>
             <li class = "w3-large" >Press [Run]</li>
         </ol>
 
@@ -117,15 +110,30 @@
         <!-- Code editor with default text -->
         <div id="editor">
     N = 100;                      // total number of data points
+    x = new Array(N);             // x protein concentration (uM)
     y = new Array(N);             // y protein concentration (uM)
-    y[0] = 10;                    // initial y protein concentration
-    pY = 0.8;                     // degradation/dilution parameter
-                                  // (0 <= pY <= 1)
+    z = new Array(N);             // z protein concentration (uM)
+    X = 10;                       // constant x protein concentration
+    x[0] = X;                     // initial x protein concentration
+    y[0] = 0;                     // initial y protein concentration
+    z[0] = 0;                     // initial z protein concentration
+    pXY = 0.2;                    // production parameter pXY
+    pY = 0.9;                     // degradation/dilution parameter pY
+    pXZ = 0.2;                    // production parameter pXZ
+    pYZ = 0.2;                    // production parameter pYZ
+    pZ = 0.9;                     // degradation/dilution parameter pZ
 
     for (n = 1; n < N; n++)       // N-1 loops (1 loop = 1 min)
     {
-        y[n] = pY*y[n-1];         // update y protein concentration
-    }                             // end of for loop
+        x[n] = X                  // x protein concentration
+
+        // update y protein concentration
+        y[n] = pXY*x[n-1] + pY*y[n-1];
+
+        // update z protein concentration
+        z[n]= pXZ*x[n-1] + pYZ*y[n-1] + pZ*z[n-1];
+
+    }   // end of for loop
         </div>
 
         <!-- Code editor with default text -->
@@ -140,10 +148,19 @@
                 var chart = document.getElementById('chart');
                 var code = editor.getValue();
                 eval(code);
-
-                yData = {name: "y protein (y[0] = " + y[0] + ", pY = " + pY + ")", x: n, y: y};
+                xData = {name: "x protein", x: n, y: x};
+                yData = {name: "y protein", x: n, y: y};
+                zData = {name: "z protein", x: n, y: z};
                 data = [];
-                data.push (yData);
+                if (document.getElementById('xProtein').checked) {
+                    data.push (xData);
+                }
+                if (document.getElementById('yProtein').checked) {
+                    data.push (yData);
+                }
+                if (document.getElementById('zProtein').checked) {
+                    data.push (zData);
+                }
                 layout = {
                     xaxis: {title: 'time [min]'},
                     yaxis: {title: 'protein concentration [uM]'},
@@ -157,6 +174,5 @@
                 }
             });
         </script>
-
     </body>
 </html>
